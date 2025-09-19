@@ -1,7 +1,8 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 
 const Register = () => {
-
+  const {createUser}=use(AuthContext);    
     const handleRegister=e=>{
         e.preventDefault();
         const form =e.target;
@@ -9,7 +10,13 @@ const Register = () => {
         const password =form.password.value;
         console.log(email,password);
         
-
+      createUser(email,password)
+      .then(result => {
+        console.log(result.user)
+      })
+      .catch(error=>{
+        console.log(error)
+      })
     }
   return (
     <div className="hero bg-base-200 min-h-screen">
