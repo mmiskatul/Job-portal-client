@@ -40,8 +40,9 @@ const Navbar = () => {
         {links}
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-4">
         <NavLink className="btn" to="/register">Register</NavLink>
+        <NavLink className="btn" to="/signIn">SignIn</NavLink>
       </div>
     </div>
   );
