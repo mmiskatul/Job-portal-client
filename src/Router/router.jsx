@@ -13,10 +13,10 @@ const router = createBrowserRouter([
             index:true,
             Component:Home
         },{
-            path: '/register',
+            path: 'register',
             Component: Register
         },{
-          path: '/signIn',
+          path: 'signIn',
           Component: SignIn
         }
     ]
