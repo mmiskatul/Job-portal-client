@@ -1,28 +1,48 @@
-import React, { useState } from 'react'
-import { AuthContext } from './AuthContext'
-import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
-import { auth } from '../../firebase/firebase.init';
+import React, { useEffect, useState } from "react";
+import { AuthContext } from "./AuthContext";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { auth } from "../../firebase/firebase.init";
 
-const AuthProvider = ({children}) => {
-  const [loading ,setLoading]=useState(true);
-  const createUser =(email,password)=>{
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth ,email,password)
-  }
-  const singInUser =(email,password)=>{
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password)
-  }
-    const authInfo ={
-      loading,
-      createUser,
-      singInUser
-    }
-  return (
-    <AuthContext value={authInfo}>
-        {children}
-    </AuthContext>
-  )
-}
+const AuthProvider = ({ children }) => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-export default AuthProvider
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const singInUser = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const singOutUser = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+      console.log("User in the Auth State Change", currentUser);
+    });
+    return () => {
+      unSubscribe();
+    };
+  }, []);
+
+  const authInfo = {
+    loading,
+    user,
+    createUser,
+    singInUser,
+    singOutUser,
+  };
+  return <AuthContext value={authInfo}>{children}</AuthContext>;
+};
+
+export default AuthProvider;
