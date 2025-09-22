@@ -1,11 +1,21 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 
 const SocialLogin = () => {
+    const {SingInWithGoogle}=use(AuthContext);
+    const handleGoogleSingIn=()=>{
+        SingInWithGoogle()
+        .then(result=>{
+            console.log(result)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
   return (
     <div className="">
       <div className="divider">OR</div>
       {/* Google */}
-      <button className="w-full btn bg-white text-black border-[#e5e5e5]">
+      <button onClick={handleGoogleSingIn} className="w-full btn bg-white text-black border-[#e5e5e5]">
         <svg
           aria-label="Google logo"
           width="16"
