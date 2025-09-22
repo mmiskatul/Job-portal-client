@@ -1,5 +1,6 @@
 import React, { use } from "react";
 import { AuthContext } from "../../contexts/AuthContext/AuthContext";
+import SocialLogin from "../shared/SocialLogin";
 
 const SignIn = () => {
   const { singInUser } = use(AuthContext);
@@ -46,6 +47,9 @@ const SignIn = () => {
                 <button className="btn btn-neutral mt-4">SingIn </button>
               </fieldset>
             </form>
+            <div>
+              <SocialLogin/>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { use } from "react";
 import { AuthContext } from "../../contexts/AuthContext/AuthContext";
+import SocialLogin from "../shared/SocialLogin";
 
 const Register = () => {
   const {createUser}=use(AuthContext);    
@@ -42,6 +43,9 @@ const Register = () => {
                 <button className="btn btn-neutral mt-4">Register</button>
               </fieldset>
             </form>
+           <div>
+             <SocialLogin/>
+           </div>
           </div>
         </div>
       </div>
