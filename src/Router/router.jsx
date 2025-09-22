@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import RootLayout from "../layout/RootLayout";
 import SignIn from "../pages/SignIn/SignIn";
+import JobDetails from "../pages/Home/JobDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,9 @@ const router = createBrowserRouter([
         },{
           path: 'signIn',
           Component: SignIn
+        },{
+          path:'jobs/:id',
+          Component: JobDetails
         }
     ]
   },
