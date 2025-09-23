@@ -1,9 +1,8 @@
 import React from "react";
-import { NavLink, useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 const JobDetails = () => {
     const job =useLoaderData();
-
 
 
 
@@ -78,9 +77,9 @@ const JobDetails = () => {
 
           {/* Apply Button at the Bottom */}
           { (
-            <NavLink 
-              href={job.applicationLink} 
-              target="_blank" 
+            <Link 
+             
+              to={`/jobApply/${job._id}`}
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform transition-transform duration-200 hover:scale-105"
             >
@@ -88,7 +87,7 @@ const JobDetails = () => {
               <svg className="ml-2 -mr-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
               </svg>
-            </NavLink>
+            </Link>
           )}
         </div>
       </div>

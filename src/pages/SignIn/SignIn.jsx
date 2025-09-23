@@ -1,9 +1,14 @@
 import React, { use } from "react";
 import { AuthContext } from "../../contexts/AuthContext/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
+import { useLocation, useNavigate } from "react-router";
 
 const SignIn = () => {
   const { singInUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/";
+  console.log(from);
   const handleSingIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,6 +18,7 @@ const SignIn = () => {
     singInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error);
@@ -48,7 +54,7 @@ const SignIn = () => {
               </fieldset>
             </form>
             <div>
-              <SocialLogin/>
+              <SocialLogin from={from} />
             </div>
           </div>
         </div>
