@@ -1,9 +1,19 @@
 import { Link, useNavigate } from "react-router";
 import { CiLocationOn } from "react-icons/ci";
+import { PiSuitcaseSimpleThin } from "react-icons/pi";
 
 const JobCard = ({ job }) => {
-    const navigate =useNavigate();
-  const { _id, title, location, jobType, category, company, company_logo } = job;
+  const navigate = useNavigate();
+  const {
+    _id,
+    title,
+    location,
+    jobType,
+    category,
+    company,
+    company_logo,
+    requirements,
+  } = job;
 
   return (
     <button onClick={() => navigate(`/jobs/${_id}`)}>
@@ -21,8 +31,22 @@ const JobCard = ({ job }) => {
             <CiLocationOn className="text-lg" />
             <span>{location}</span>
           </div>
-          <span className="badge badge-outline">{jobType}</span>
-          <span className="badge badge-outline">{category}</span>
+          <div className="flex  gap-4">
+            <div className="flex items-center gap-2">
+              <PiSuitcaseSimpleThin className="size-5" />{" "}
+              <span className="">{jobType}</span>
+            </div>
+            <span className="badge badge-outline">{category}</span>
+          </div>
+          <div className="py-2">
+            <div className="grid grid-cols-2 items-center gap-4">
+              {requirements?.map((req, index) => (
+                <div key={index} className="border p-2 rounded">
+                  {req.length > 10 ? req.slice(0, 10) + "..." : req}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </button>

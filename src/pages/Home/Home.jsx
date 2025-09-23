@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import Banner from './Banner'
 import HotJobs from './HotJobs'
 
@@ -13,7 +13,9 @@ const Home = () => {
   return (
     <div>
         <Banner/>
-        <HotJobs jobs={jobs}/>
+        <Suspense fallback={'Loading hot jobs'}>
+          <HotJobs jobs={jobs}/>
+        </Suspense>
     </div>
   )
 }
