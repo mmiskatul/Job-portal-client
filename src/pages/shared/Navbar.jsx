@@ -14,8 +14,13 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>{" "}
+        <NavLink to="/">Home</NavLink>
       </li>
+      {
+        user && <li>
+        <NavLink to="/myApplications">My Application</NavLink>
+        </li>
+      }
     </>
   );
   return (
@@ -48,8 +53,8 @@ const Navbar = () => {
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+      <div className=" navbar-center hidden lg:flex lg:items-center">
+        <ul className="menu menu-horizontal px-1 ">{links}</ul>
       </div>
       <div className="navbar-end gap-4">
         {user ? (
