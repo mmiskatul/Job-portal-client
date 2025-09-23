@@ -1,55 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router";
+import React from "react";
+import { NavLink, useLoaderData } from "react-router";
 
 const JobDetails = () => {
-  const { id } = useParams();
-  const [job, setJob] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+    const job =useLoaderData();
 
-  useEffect(() => {
-    // fetch job details from API
-    fetch(`http://localhost:5002/jobs`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch job details");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        const foundJob = data.find((job) => job._id === id);
-        if (foundJob) {
-          setJob(foundJob);
-        } else {
-          setError("Job not found");
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [id]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-500"></div>
-        <p className="ml-4 text-xl text-gray-700">Loading job details...</p>
-      </div>
-    );
-  }
 
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">Error!</strong>
-          <span className="block sm:inline ml-2">{error}</span>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

@@ -49,7 +49,7 @@ const JobCard = ({ job }) => {
           </div>
         </div>
         <div onClick={() => navigate(`/jobs/${_id}`)} className="card-actions">
-          <button className="btn btn-primary">Appy now </button>
+          <button className="btn btn-primary">Show Details </button>
         </div>
       </div>
     </div>
