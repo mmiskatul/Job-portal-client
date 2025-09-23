@@ -16,7 +16,7 @@ const JobCard = ({ job }) => {
   } = job;
 
   return (
-    <button onClick={() => navigate(`/jobs/${_id}`)}>
+    <div >
       <div className="card bg-base-100 shadow-md border rounded-lg p-20 flex flex-col items-start gap-4 hover:shadow-lg transition">
         <img
           src={company_logo}
@@ -48,8 +48,11 @@ const JobCard = ({ job }) => {
             </div>
           </div>
         </div>
+        <div onClick={() => navigate(`/jobs/${_id}`)} className="card-actions">
+          <button className="btn btn-primary">Appy now </button>
+        </div>
       </div>
-    </button>
+    </div>
   );
 };
 
